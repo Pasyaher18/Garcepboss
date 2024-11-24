@@ -34,9 +34,9 @@
         <!-- Gambar Motor SVG -->
         <img src="{{ asset('icon/motor.svg') }}" alt="Motor" style="
         position: absolute;
-        bottom: 20px; /* Geser ke atas sebanyak 50px */
-        right: 0;
-        width: 500px; /* Atur ukuran gambar sesuai keinginan */
+        bottom: -45px;
+        right: 0px;
+        width: 715px; Atur ukuran gambar sesuai keinginan
         transform: rotate(-6.73deg); /* Atur kemiringan sesuai kebutuhan */
         z-index: 2;">
 
