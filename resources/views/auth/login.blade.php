@@ -76,13 +76,15 @@
                     <form method="POST" action="{{ route('login') }}" class="gap-4 d-flex flex-column">
                         @csrf
 
+                        <input type="hidden" name="typeRegistration" id="typeRegistration" value="{{ $typeRegistration }}">
                         <!-- Username -->
                         <div class="d-flex align-items-center rounded-3" style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
                             <i class="ti ti-user-square-rounded me-3" style="font-size: 24px;"></i>
-                            <x-text-input id="username" name="username" :value="old('username')" required autofocus autocomplete="username"
+                            <x-text-input id="username_or_email" name="username_or_email" :value="old('username_or_email')" required autofocus autocomplete="username_or_email"
                                 class="border-0 w-100"
                                 placeholder="Username or Email"
                                 style="background: transparent; box-shadow: none !important;"/>
+                                <x-input-error :messages="$errors->get('username_or_email')" class="mt-2" />
                         </div>
 
                         <!-- Password -->
@@ -92,6 +94,7 @@
                                 class="border-0 w-100"
                                 placeholder="Password"
                                 style="background: transparent; box-shadow: none !important;"/>
+                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
                         </div>
 
                         <!-- Tombol Login -->
@@ -100,7 +103,20 @@
                                 style="background: #343434; color: white; border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
                                 {{ __('Log in') }}
                             </button>
+                            <a href="{{ url("register?typeRegistration=$typeRegistration") }}">
+                                <button type="button" class="py-3 mt-4 w-100 rounded-3 fw-bold"
+                                style="background: gray; color: white; border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                {{ __('Register') }}
+                                </button>
+                            </a>
                         </div>
+
+                        <a href="{{ route('welcome') }}">
+                            <button type="button" class="py-3 mt-4 w-100 rounded-3 fw-bold"
+                                style="background: gray; color: white; border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                {{ __('Back to welcome') }}
+                            </button>
+                        </a>
                     </form>
                 </div>
             </div>

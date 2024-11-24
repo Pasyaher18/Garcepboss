@@ -8,11 +8,11 @@
                 <p>Select an option below and make sure your selection is correct.</p>
                 <div class="gap-3 d-flex justify-content-center">
                     <!-- Tombol User -->
-                    <a href="#" class="px-4 py-2 rounded-md btn" style="background-color: white; color: #343434; font-weight: bold; border: 1px solid #343434;">
+                    <a href="{{ url("login?typeRegistration=user") }}" class="px-4 py-2 rounded-md btn" style="background-color: white; color: #343434; font-weight: bold; border: 1px solid #343434;">
                         User
                     </a>
                     <!-- Tombol Driver -->
-                    <a href="#" class="px-4 py-2 rounded-md btn" style="background-color: #343434; color: white; font-weight: bold; border: 1px solid white;">
+                    <a href="{{ url("login?typeRegistration=driver") }}" class="px-4 py-2 rounded-md btn" style="background-color: #343434; color: white; font-weight: bold; border: 1px solid white;">
                         Driver
                     </a>
                 </div>
