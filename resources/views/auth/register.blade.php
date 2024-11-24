@@ -234,10 +234,11 @@
 {{-- =================[Register Driver]================= --}}
 <x-app-layout>
     <div class="container-fluid"
-        style="background-color: #343434; min-height: 100vh; position: relative; overflow: hidden;">
+        style="background-color: #343434; min-height: 100vh; position: relative;">
 
         <!-- Segitiga Putih di Kanan Bawah -->
-        <div style="
+        <div
+            style="
             position: absolute;
             bottom: 0;
             left: 0;
@@ -251,6 +252,7 @@
             <!-- Konten Utama -->
             <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
                 <div class="w-100" style="max-width: 800px;">
+
                     <!-- Judul -->
                     <h1 class="mb-3 text-center fw-bold" style="font-family: 'Inter', sans-serif; font-size: 60px;">
                         Driver Registration
@@ -263,6 +265,8 @@
                     <form method="POST" enctype="multipart/form-data" class="gap-4">
                         @csrf
                         <div class="row g-4">
+                            <input type="hidden" id="typeRegistration" name="typeRegistration"
+                                value="{{ $typeRegistration }}">
 
                             <!-- Email -->
                             <div class="col-md-6">
@@ -271,8 +275,12 @@
                                     style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
                                     <i class="ti ti-mail me-3" style="font-size: 24px;"></i>
                                     <input type="text" id="email" name="email" placeholder="Jhon Doe"
-                                        class="bg-transparent border-0 form-control" required />
+                                        value="{{ old('email') }}" class="bg-transparent border-0 form-control"
+                                        required />
                                 </div>
+                                @error('email')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <!-- Password -->
@@ -281,9 +289,12 @@
                                 <div class="d-flex align-items-center rounded-3"
                                     style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
                                     <i class="ti ti-lock me-3" style="font-size: 24px;"></i>
-                                    <input type="password" id="password" name="password" placeholder="********" class="bg-transparent border-0 form-control"
-                                        required />
+                                    <input type="password" id="password" name="password" placeholder="********"
+                                        class="bg-transparent border-0 form-control" required />
                                 </div>
+                                @error('password')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
                             </div>
 
                             <!-- Nama -->
@@ -293,107 +304,163 @@
                                     style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
                                     <i class="ti ti-user-square-rounded me-3" style="font-size: 24px;"></i>
                                     <input type="text" id="name" name="name" placeholder="Jhon Doe"
-                                        class="bg-transparent border-0 form-control" required />
-                                </div>
-                            </div>
-
-                            <!-- Tanggal Lahir -->
-                            <div class="col-md-6">
-                                <label for="birth_date">Birth Date</label>
-                                <div class="d-flex align-items-center rounded-3"
-                                    style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
-                                    <i class="ti ti-calendar me-3" style="font-size: 24px;"></i>
-                                    <input type="date" id="birth_date" name="birth_date" class="bg-transparent border-0 form-control"
+                                        value="{{ old('name') }}" class="bg-transparent border-0 form-control"
                                         required />
                                 </div>
+                                @error('name')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
                             </div>
 
-                            <!-- Foto SIM -->
-                            <div class="col-md-6">
-                                <label for="driver_license">Driver's license (IMG)</label>
-                                <div class="d-flex align-items-center rounded-3"
-                                    style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
-                                    <i class="ti ti-id me-3" style="font-size: 24px;"></i>
-                                    <input type="file" id="driver_license" name="driver_license" accept="image/*"
-                                        class="bg-transparent border-0 form-control" required />
-                                </div>
-                            </div>
-
-                            <!-- Surat Kelakuan Baik -->
-                            <div class="col-md-6">
-                                <label for="certificate_of_conduct">Letter of Good Conduct (PDF)</label>
-                                <div class="d-flex align-items-center rounded-3"
-                                    style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
-                                    <i class="ti ti-file-text me-3" style="font-size: 24px;"></i>
-                                    <input type="file" name="certificate_of_conduct" name="certificate_of_conduct" accept="application/pdf"
-                                        class="bg-transparent border-0 form-control" required />
-                                </div>
-                            </div>
-
-
-                            <!-- Apakah Anda Memiliki Kendaraan -->
-                            <div class="col-md-12" style="color: #343434;">
-                                <h3 class="">Do you have a vehicle?</h3>
-                                <div class="gap-3 mt-2 d-flex align-items-center">
-                                    <div>
-                                        <input type="radio" name="have_vehicle" id="vehicle_yes" value="yes"
-                                            class="form-check-input" />
-                                        <label for="vehicle_yes" class="">Yes, I have a private vehicle</label>
+                            @if ($typeRegistration == 'driver')
+                                <!-- Tanggal Lahir -->
+                                <div class="col-md-6">
+                                    <label for="birth_date">Birth Date</label>
+                                    <div class="d-flex align-items-center rounded-3"
+                                        style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
+                                        <i class="ti ti-calendar me-3" style="font-size: 24px;"></i>
+                                        <input type="date" id="birth_date" name="birth_date"
+                                            class="bg-transparent border-0 form-control" required
+                                            value="{{ old('birth_date') }}" />
                                     </div>
-                                    <div>
-                                        <input type="radio" name="have_vehicle" id="vehicle_no" value="no"
-                                            class="form-check-input" />
-                                        <label for="vehicle_no" class="">No, I don't have a private vehicle</label>
-                                    </div>
+                                    @error('birth_date')
+                                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                            </div>
+
+                                <!-- Foto SIM -->
+                                <div class="col-md-6">
+                                    <label for="driver_license">Driver's license (IMG)</label>
+                                    <div class="d-flex align-items-center rounded-3"
+                                        style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
+                                        <i class="ti ti-id me-3" style="font-size: 24px;"></i>
+                                        <input type="file" id="driver_license" name="driver_license" accept="image/*"
+                                            class="bg-transparent border-0 form-control" required
+                                            value="{{ old('driver_license') }}" />
+                                    </div>
+                                    @error('driver_license')
+                                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- Surat Kelakuan Baik -->
+                                <div class="col-md-6">
+                                    <label for="certificate_of_conduct">Letter of Good Conduct (PDF)</label>
+                                    <div class="d-flex align-items-center rounded-3"
+                                        style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
+                                        <i class="ti ti-file-text me-3" style="font-size: 24px;"></i>
+                                        <input type="file" name="certificate_of_conduct"
+                                            name="certificate_of_conduct" accept="application/pdf"
+                                            class="bg-transparent border-0 form-control" required
+                                            value="{{ old('certificate_of_conduct') }}" />
+                                    </div>
+                                    @error('certificate_of_conduct')
+                                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+
+                                <!-- Apakah Anda Memiliki Kendaraan -->
+                                <div class="col-md-12" style="color: #343434;">
+                                    <h3 class="">Do you have a vehicle?</h3>
+                                    <div class="gap-3 mt-2 d-flex align-items-center">
+                                        <div>
+                                            <input type="radio" name="have_vehicle" id="vehicle_yes"
+                                                value="1" @if (old('have_vehicle') == '1') checked @endif
+                                                class="form-check-input" />
+                                            <label for="vehicle_yes" class="">Yes, I have a private
+                                                vehicle</label>
+                                        </div>
+                                        <div>
+                                            <input type="radio" name="have_vehicle" id="vehicle_no" value="0"
+                                                @if (old('have_vehicle') == '0') checked @endif
+                                                class="form-check-input" />
+                                            <label for="vehicle_no" class="">No, I don't have a private
+                                                vehicle</label>
+                                        </div>
+                                    </div>
+
+                                    @error('have_vehicle')
+                                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
+                                </div>
                         </div>
 
                         <!-- Jika Ya -->
-                        <div class="vehicle-info d-none">
-                                <div class="mt-0 row g-4">
-                                    <!-- No Plat -->
-                                    <div class="col-md-6">
-                                        <label for="number_plate">Plate number</label>
-                                        <div class="d-flex align-items-center rounded-3"
-                                            style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
-                                            <i class="ti ti-barcode me-3" style="font-size: 24px;"></i>
-                                            <input type="text" id="number_plate" name="number_plate" placeholder="Nomor Plat"
-                                                class="bg-transparent border-0 form-control" />
-                                        </div>
+                        <div class="vehicle-info {{ old('have_vehicle') == false ? 'd-none' : ''}}">
+                            <div class="mt-0 row g-4">
+                                <!-- No Plat -->
+                                <div class="col-md-6">
+                                    <label for="number_plate">Plate number</label>
+                                    <div class="d-flex align-items-center rounded-3"
+                                        style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
+                                        <i class="ti ti-barcode me-3" style="font-size: 24px;"></i>
+                                        <input type="text" id="number_plate" name="number_plate"
+                                            placeholder="Nomor Plat" class="bg-transparent border-0 form-control"
+                                            value="{{ old('number_plate') ?? ""}}" />
                                     </div>
-
-                                    <!-- Foto STNK -->
-                                    <div class="col-md-6">
-                                        <label for="vehicle_registration">Vehicle registration certificate (IMG)</label>
-                                        <div class="d-flex align-items-center rounded-3"
-                                            style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
-                                            <i class="ti ti-id me-3" style="font-size: 24px;"></i>
-                                            <input type="file" id="vehicle_registration" name="vehicle_registration" accept="image/*"
-                                                class="bg-transparent border-0 form-control" />
-                                        </div>
-                                    </div>
-
-                                    <!-- Foto Kendaraan -->
-                                    <div class="mt-4 col-md-12">
-                                        <label for="vehicle_photo">Vehicle Photos (IMG)</label>
-                                        <div class="d-flex align-items-center rounded-3" style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
-                                            <i class="ti ti-camera me-3" style="font-size: 24px;"></i>
-                                            <input type="file" id="vehicle_photo" name="vehicle_photo" accept="image/*"
-                                                class="bg-transparent border-0 form-control" />
-                                            </div>
-                                            <img id="vehicle_preview" src="#" alt="Vehicle Preview" class="mt-3 rounded-3 d-none" style="width: auto; max-width: 150px; max-height: 150px; object-fit: contain; display: block; margin: 0 auto;" />
-                                    </div>
+                                    @error('number_plate')
+                                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
+                                <!-- Foto STNK -->
+                                <div class="col-md-6">
+                                    <label for="vehicle_registration">Vehicle registration certificate (IMG)</label>
+                                    <div class="d-flex align-items-center rounded-3"
+                                        style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
+                                        <i class="ti ti-id me-3" style="font-size: 24px;"></i>
+                                        <input type="file" id="vehicle_registration" name="vehicle_registration"
+                                            accept="image/*" class="bg-transparent border-0 form-control"
+                                            value="{{ old('vehicle_registration') }}" />
+                                    </div>
+                                    @error('vehicle_registration')
+                                        <div class="invalid-feedback d-block">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- Foto Kendaraan -->
+                                <div class="mt-4 col-md-12">
+                                    <label for="vehicle_photo">Vehicle Photos (IMG)</label>
+                                    <div class="d-flex align-items-center rounded-3"
+                                        style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
+                                        <i class="ti ti-camera me-3" style="font-size: 24px;"></i>
+                                        <input type="file" id="vehicle_photo" name="vehicle_photo"
+                                            accept="image/*" class="bg-transparent border-0 form-control"
+                                            value="{{ old('vehicle_photo') }}" />
+                                    </div>
+                                    <img id="vehicle_preview" src="#" alt="Vehicle Preview"
+                                        class="mt-3 rounded-3 d-none"
+                                        style="width: auto; max-width: 150px; max-height: 150px; object-fit: contain; display: block; margin: 0 auto;" />
+                                </div>
+                                @error('vehicle_photo')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
                         </div>
+                        @endif
                         <!-- Submit -->
                         <div class="mt-4 text-center col-md-12">
                             <button type="submit" class="py-3 w-100 rounded-3 fw-bold"
                                 style="background: #343434; color: white; border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
                                 Register
                             </button>
+
+                            <a href="{{ url("login?typeRegistration=$typeRegistration") }}">
+                                <button type="button" class="py-3 mt-4 w-100 rounded-3 fw-bold"
+                                    style="background: gray; color: white; border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                    {{ __('Login') }}
+                                </button>
+                            </a>
                         </div>
+
+                        <a href="{{ route('welcome') }}">
+                            <button type="button" class="py-3 mt-4 w-100 rounded-3 fw-bold"
+                                style="background: gray; color: white; border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                {{ __('Back to welcome') }}
+                            </button>
+                        </a>
                     </form>
                 </div>
             </div>
