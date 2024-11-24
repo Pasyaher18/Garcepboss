@@ -167,6 +167,21 @@
                                         </div>
                                     </a>
 
+                                    <!-- Card Skeleton -->
+                                    <a href="#" class="d-flex flex-column align-items-start justify-content-center rounded-5"
+                                        style="background: #272727; width: 220px; padding: 25px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); text-decoration: none; position: relative;">
+
+                                        <!-- Skeleton Foto Kurir -->
+                                        <div class="skeleton d-flex align-items-center fw-semibold"
+                                            style="width: 100%; height: 100%; color: #ffffff; text-align: left; font-size: 2em; font-style: italic;">
+                                            Driver is on the way
+                                        </div>
+
+                                        <!-- Foto di Pojok Kanan Bawah -->
+                                        <img src="{{ asset('icon/moto_speed.png') }}" alt="Icon"
+                                            style="width: 140%; position: absolute; bottom: -110px; right: -84px;">
+                                    </a>
+
 
                                 </div>
                         </div>
