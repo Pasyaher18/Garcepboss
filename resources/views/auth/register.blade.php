@@ -232,7 +232,7 @@
 
 
 {{-- =================[Register Driver]================= --}}
-{{-- <x-app-layout>
+<x-app-layout>
     <div class="container-fluid"
         style="background-color: #343434; min-height: 100vh; position: relative; overflow: hidden;">
 
@@ -263,6 +263,28 @@
                     <form method="POST" enctype="multipart/form-data" class="gap-4">
                         @csrf
                         <div class="row g-4">
+
+                            <!-- Email -->
+                            <div class="col-md-6">
+                                <label for="email">Email</label>
+                                <div class="d-flex align-items-center rounded-3"
+                                    style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
+                                    <i class="ti ti-mail me-3" style="font-size: 24px;"></i>
+                                    <input type="text" id="email" name="email" placeholder="Jhon Doe"
+                                        class="bg-transparent border-0 form-control" required />
+                                </div>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="col-md-6">
+                                <label for="password">Password</label>
+                                <div class="d-flex align-items-center rounded-3"
+                                    style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
+                                    <i class="ti ti-lock me-3" style="font-size: 24px;"></i>
+                                    <input type="password" id="password" name="password" placeholder="********" class="bg-transparent border-0 form-control"
+                                        required />
+                                </div>
+                            </div>
 
                             <!-- Nama -->
                             <div class="col-md-6">
@@ -360,8 +382,7 @@
                                             <input type="file" id="vehicle_photo" name="vehicle_photo" accept="image/*"
                                                 class="bg-transparent border-0 form-control" />
                                             </div>
-                                            <img id="vehicle_preview" src="#" alt="Vehicle Preview" class="mt-3 rounded-3 d-none" style="width: auto; max-width: 200px; max-height: 200px; object-fit: contain; display: block; margin: 0 auto;" />
-
+                                            <img id="vehicle_preview" src="#" alt="Vehicle Preview" class="mt-3 rounded-3 d-none" style="width: auto; max-width: 150px; max-height: 150px; object-fit: contain; display: block; margin: 0 auto;" />
                                     </div>
                                 </div>
 
@@ -409,4 +430,4 @@
         });
     </script>
 
-</x-app-layout> --}}
+</x-app-layout>
