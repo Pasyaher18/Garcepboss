@@ -211,7 +211,7 @@
 
                         <!-- Reminder Card -->
                         <div class="rounded-5"
-                            style="background: #272727; width: 80%; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                            style="background: #272727; width: 70%; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
                             <div class="overflow-hidden d-flex align-items-center justify-content-center rounded-5"
                                 style="width: 100%; aspect-ratio: 6/2; background:">
                                 <p class="m-0 text-center" style="color: #3c3c3c;; font-size: 20px; font-weight: bold;">
