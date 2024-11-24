@@ -202,7 +202,8 @@
                         </div>
                     </div>
 
-                    <div style="width: 100%">
+                    {{-- Yang di Comment ini buat user --}}
+                    {{-- <div style="width: 100%">
                         <!-- Title -->
                         <h1 class="mb-3 text-left fw-bold"
                             style="font-family: 'Inter', sans-serif; font-size: 25px; font-style: italic;">
@@ -219,7 +220,77 @@
                                 </p>
                             </div>
                         </div>
+                    </div> --}}
+
+                    {{-- Yang ini buat driver --}}
+                    <div style="width: 100%;">
+                        <!-- Title -->
+                        <h1 class="mb-3 text-left fw-bold"
+                            style="font-family: 'Inter', sans-serif; font-size: 25px; font-style: italic;">
+                            Reminder
+                        </h1>
+
+                        <!-- Reminder Card -->
+                        <div class="rounded-5" style="background: #272727; width: 70%; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 15px;">
+                            <!-- List Pesanan -->
+                            <div class="gap-3 d-flex flex-column rounded-4" style="max-height: 200px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #3c3c3c #272727;">
+
+                                <!-- Pesanan 1 -->
+                                <div class="p-3 d-flex justify-content-between align-items-center rounded-4"
+                                    style="background: #3c3c3c;">
+                                    <div>
+                                        <p class="m-0" style="color: white; font-size: 16px; font-weight: bold;">John Doe</p>
+                                        <p class="m-0" style="color: #c2c2c2; font-size: 14px;"> <i class="ti ti-map-pin">&nbsp;</i>123 Street, City Center</p>
+                                    </div>
+                                    <button class="btn btn-sm btn-primary"
+                                        style="background: #272727; border: none; font-size: 14px;">
+                                        Take Order
+                                    </button>
+                                </div>
+
+                                <!-- Pesanan 1 -->
+                                <div class="p-3 d-flex justify-content-between align-items-center rounded-4"
+                                    style="background: #3c3c3c;">
+                                    <div>
+                                        <p class="m-0" style="color: white; font-size: 16px; font-weight: bold;">John Doe</p>
+                                        <p class="m-0" style="color: #c2c2c2; font-size: 14px;"> <i class="ti ti-map-pin">&nbsp;</i>123 Street, City Center</p>
+                                    </div>
+                                    <button class="btn btn-sm btn-primary"
+                                        style="background: #272727; border: none; font-size: 14px;">
+                                        Take Order
+                                    </button>
+                                </div>
+
+                                <!-- Pesanan 1 -->
+                                <div class="p-3 d-flex justify-content-between align-items-center rounded-4"
+                                    style="background: #3c3c3c;">
+                                    <div>
+                                        <p class="m-0" style="color: white; font-size: 16px; font-weight: bold;">John Doe</p>
+                                        <p class="m-0" style="color: #c2c2c2; font-size: 14px;"> <i class="ti ti-map-pin">&nbsp;</i>123 Street, City Center</p>
+                                    </div>
+                                    <button class="btn btn-sm btn-primary"
+                                        style="background: #272727; border: none; font-size: 14px;">
+                                        Take Order
+                                    </button>
+                                </div>
+
+                                <!-- Pesanan 1 -->
+                                <div class="p-3 d-flex justify-content-between align-items-center rounded-4"
+                                    style="background: #3c3c3c;">
+                                    <div>
+                                        <p class="m-0" style="color: white; font-size: 16px; font-weight: bold;">John Doe</p>
+                                        <p class="m-0" style="color: #c2c2c2; font-size: 14px;"> <i class="ti ti-map-pin">&nbsp;</i>123 Street, City Center</p>
+                                    </div>
+                                    <button class="btn btn-sm btn-primary"
+                                        style="background: #272727; border: none; font-size: 14px;">
+                                        Take Order
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
+
 
                 </div>
 
