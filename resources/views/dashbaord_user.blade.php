@@ -1,55 +1,4 @@
 <x-app-layout>
-    <div class="container-fluid bg-dark text-light" style="background-color: #343434; min-height: 100vh; position: relative; overflow: hidden;">
-        <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
-            <div class="text-center col-md-8">
-                <h1 style="font-family: 'Inter', sans-serif; font-size: 60px; font-style: italic;" class="fw-bold">
-                    Welcome to Garcepboss!
-                </h1>
-                <p>Select an option below and make sure your selection is correct.</p>
-                <div class="gap-3 d-flex justify-content-center">
-                    <!-- Tombol User -->
-                    <a href="{{ url("login?typeRegistration=user") }}" class="px-4 py-2 rounded-md btn" style="background-color: white; color: #343434; font-weight: bold; border: 1px solid #343434;">
-                        User
-                    </a>
-                    <!-- Tombol Driver -->
-                    <a href="{{ url("login?typeRegistration=driver") }}" class="px-4 py-2 rounded-md btn" style="background-color: #343434; color: white; font-weight: bold; border: 1px solid white;">
-                        Driver
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Segitiga Putih di Kanan Bawah -->
-        <div style="
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            clip-path: polygon(-50% 100%, 100% 75%, 100% 100%);
-            z-index: 1;">
-        </div>
-
-        <!-- Gambar Motor SVG -->
-        <img src="{{ asset('icon/motor.svg') }}" alt="Motor" style="
-        position: absolute;
-        bottom: -45px;
-        right: 0px;
-        width: 715px; Atur ukuran gambar sesuai keinginan
-        transform: rotate(-6.73deg); /* Atur kemiringan sesuai kebutuhan */
-        z-index: 2;">
-
-        <img src="{{ asset('icon/logo.png') }}" alt="Motor" style="
-        position: absolute;
-        bottom: -40px; /* Geser ke atas sebanyak 50px */
-        right: -50px;
-        width: 500px; /* Atur ukuran gambar sesuai keinginan */
-        /* transform: rotate(-6.73deg); Atur kemiringan sesuai kebutuhan */
-        z-index: 2;">
-    </div>
-</x-app-layout>
-{{-- <x-app-layout>
     <div class="container-fluid bg-dark text-light" style="background-color: #343434 !important; min-height: 100vh; position: relative; overflow: hidden;">
         <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
 
@@ -85,6 +34,7 @@
                             <div class="flex-column d-flex">
                                 <a href="#" class="d-flex align-items-center justify-content-center rounded-4 hover-scale"
                                     style="background: #272727; width: 90px; height: 90px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: transform 0.3s; text-decoration: none !important;">
+                                    {{-- <i class="ti ti-file-text" style="font-size: 40px; color: white;"></i> --}}
                                     <img src="{{ asset('icon/vehicle.png') }}" alt="">
                                 </a>
                                 <p class="mt-2 text-center fw-light text-wrap" style="color: white; max-width: 90px; line-height: 1.2; font-size: 13px;"">
@@ -190,10 +140,27 @@
 
                 <!-- Right Side -->
                 <div class="gap-4 col-md-6 d-flex flex-column align-items-start">
+                    <!-- Maps Dummy & Logout -->
                     <div>
-                        <h1 class="mb-3 text-left fw-bold" style="font-family: 'Inter', sans-serif; font-size: 25px; font-style: italic;">
-                            Maps
-                        </h1>
+                        <div class="d-flex justify-content-between align-items-center" style="width: 120%;">
+                            <!-- Title (Maps) -->
+                            <h1 class="mb-3 fw-bold" style="font-family: 'Inter', sans-serif; font-size: 25px; font-style: italic;">
+                                Maps
+                            </h1>
+
+                            <!-- Logout Button -->
+                            <form method="POST" action="{{ route('logout') }}" class="mb-3 ms-3">
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                        style="background-color: #A8A3A3; border: none; border-radius: 50%;
+                                            width: 50px; height: 50px; display: flex;
+                                            justify-content: center; align-items: center;
+                                            padding: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                    <i class="ti ti-logout fs-3" style="color: #272727;"></i>
+                                </button>
+                            </form>
+                        </div>
+
                         <div class="d-flex flex-column align-items-center justify-content-start rounded-5" style="background: #ffffff; width: 120%; padding: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
                             <div class="overflow-hidden rounded-5" style="width: 100%; aspect-ratio: 4/2;">
                                 <img src="{{ asset('icon/maps.png') }}" alt="Kurir Photo" style="width: 100%; height: 100%; object-fit: cover;">
@@ -201,8 +168,7 @@
                         </div>
                     </div>
 
-                    <!-- Yang ini buat driver -->
-                    <div style="width: 100%;">
+                    <div style="width: 80%">
                         <!-- Title -->
                         <h1 class="mb-3 text-left fw-bold"
                             style="font-family: 'Inter', sans-serif; font-size: 25px; font-style: italic;">
@@ -210,66 +176,16 @@
                         </h1>
 
                         <!-- Reminder Card -->
-                        <div class="rounded-5" style="background: #272727; width: 70%; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 15px;">
-                            <!-- List Pesanan -->
-                            <div class="gap-3 d-flex flex-column rounded-4" style="max-height: 200px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #3c3c3c #272727;">
-
-                                <!-- Pesanan 1 -->
-                                <div class="p-3 d-flex justify-content-between align-items-center rounded-4"
-                                    style="background: #3c3c3c;">
-                                    <div>
-                                        <p class="m-0" style="color: white; font-size: 16px; font-weight: bold;">John Doe</p>
-                                        <p class="m-0" style="color: #c2c2c2; font-size: 14px;"> <i class="ti ti-map-pin">&nbsp;</i>123 Street, City Center</p>
-                                    </div>
-                                    <button class="btn btn-sm btn-primary"
-                                        style="background: #272727; border: none; font-size: 14px;">
-                                        Take Order
-                                    </button>
-                                </div>
-
-                                <!-- Pesanan 1 -->
-                                <div class="p-3 d-flex justify-content-between align-items-center rounded-4"
-                                    style="background: #3c3c3c;">
-                                    <div>
-                                        <p class="m-0" style="color: white; font-size: 16px; font-weight: bold;">John Doe</p>
-                                        <p class="m-0" style="color: #c2c2c2; font-size: 14px;"> <i class="ti ti-map-pin">&nbsp;</i>123 Street, City Center</p>
-                                    </div>
-                                    <button class="btn btn-sm btn-primary"
-                                        style="background: #272727; border: none; font-size: 14px;">
-                                        Take Order
-                                    </button>
-                                </div>
-
-                                <!-- Pesanan 1 -->
-                                <div class="p-3 d-flex justify-content-between align-items-center rounded-4"
-                                    style="background: #3c3c3c;">
-                                    <div>
-                                        <p class="m-0" style="color: white; font-size: 16px; font-weight: bold;">John Doe</p>
-                                        <p class="m-0" style="color: #c2c2c2; font-size: 14px;"> <i class="ti ti-map-pin">&nbsp;</i>123 Street, City Center</p>
-                                    </div>
-                                    <button class="btn btn-sm btn-primary"
-                                        style="background: #272727; border: none; font-size: 14px;">
-                                        Take Order
-                                    </button>
-                                </div>
-
-                                <!-- Pesanan 1 -->
-                                <div class="p-3 d-flex justify-content-between align-items-center rounded-4"
-                                    style="background: #3c3c3c;">
-                                    <div>
-                                        <p class="m-0" style="color: white; font-size: 16px; font-weight: bold;">John Doe</p>
-                                        <p class="m-0" style="color: #c2c2c2; font-size: 14px;"> <i class="ti ti-map-pin">&nbsp;</i>123 Street, City Center</p>
-                                    </div>
-                                    <button class="btn btn-sm btn-primary"
-                                        style="background: #272727; border: none; font-size: 14px;">
-                                        Take Order
-                                    </button>
-                                </div>
-
+                        <div class="rounded-5"
+                            style="background: #272727; width: 70%; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                            <div class="overflow-hidden d-flex align-items-center justify-content-center rounded-5"
+                                style="width: 100%; aspect-ratio: 6/2; background:">
+                                <p class="m-0 text-center" style="color: #3c3c3c;; font-size: 20px; font-weight: bold;">
+                                    No Reminders
+                                </p>
                             </div>
                         </div>
                     </div>
-
 
                 </div>
 
@@ -296,4 +212,4 @@
         </style>
 
     </div>
-</x-app-layout> --}}
+</x-app-layout>
