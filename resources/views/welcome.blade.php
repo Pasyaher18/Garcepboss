@@ -1,5 +1,4 @@
 <x-app-layout>
-<x-app-layout>
     <div class="container-fluid bg-dark text-light" style="background-color: #343434; min-height: 100vh; position: relative; overflow: hidden;">
         <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
             <div class="text-center col-md-8">
@@ -50,6 +49,7 @@
         z-index: 2;">
     </div>
 </x-app-layout>
+
 {{-- <x-app-layout>
     <div class="container-fluid bg-dark text-light" style="background-color: #343434 !important; min-height: 100vh; position: relative; overflow: hidden;">
         <div class="row justify-content-center align-items-center" style="min-height: 100vh;">
