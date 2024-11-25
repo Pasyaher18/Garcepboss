@@ -47,10 +47,12 @@
 </x-guest-layout> --}}
 
 <x-app-layout>
-    <div class="container-fluid" style="background-color: #343434; min-height: 100vh; position: relative; overflow: hidden;">
+    <div class="container-fluid"
+        style="background-color: #343434; min-height: 100vh; position: relative; overflow: hidden;">
 
         <!-- Segitiga Putih di Kanan Bawah -->
-        <div style="
+        <div
+            style="
             position: absolute;
             bottom: 0;
             left: 0;
@@ -61,7 +63,7 @@
             clip-path: polygon(-400% 100%, 100% -12%, 100% 100%);
             z-index: 0;">
 
-        <!-- Konten Utama -->
+            <!-- Konten Utama -->
             <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
                 <div class="w-100" style="max-width: 400px;">
                     <!-- Judul -->
@@ -76,47 +78,60 @@
                     <form method="POST" action="{{ route('login') }}" class="gap-4 d-flex flex-column">
                         @csrf
 
-                        <input type="hidden" name="typeRegistration" id="typeRegistration" value="{{ $typeRegistration }}">
+                        <input type="hidden" name="typeRegistration" id="typeRegistration"
+                            value="{{ $typeRegistration }}">
                         <!-- Username -->
-                        <div class="d-flex align-items-center rounded-3" style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
+                        <div class="d-flex align-items-center rounded-3"
+                            style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
                             <i class="ti ti-user-square-rounded me-3" style="font-size: 24px;"></i>
-                            <x-text-input id="username_or_email" name="username_or_email" :value="old('username_or_email')" required autofocus autocomplete="username_or_email"
-                                class="border-0 w-100"
+                            <x-text-input id="username_or_email" name="username_or_email" :value="old('username_or_email')" required
+                                autofocus autocomplete="username_or_email" class="border-0 w-100"
                                 placeholder="Username or Email"
-                                style="background: transparent; box-shadow: none !important;"/>
-                                <x-input-error :messages="$errors->get('username_or_email')" class="mt-2" />
+                                style="background: transparent; box-shadow: none !important;" />
+                            <x-input-error :messages="$errors->get('username_or_email')" class="mt-2" />
                         </div>
 
                         <!-- Password -->
-                        <div class="d-flex align-items-center rounded-3" style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
+                        <div class="d-flex align-items-center rounded-3"
+                            style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
                             <span class="ti ti-lock-open me-3" style="font-size: 24px;"></span>
-                            <x-text-input id="password" name="password" type="password" required autocomplete="current-password"
-                                class="border-0 w-100"
-                                placeholder="Password"
-                                style="background: transparent; box-shadow: none !important;"/>
+                            <x-text-input id="password" name="password" type="password" required
+                                autocomplete="current-password" class="border-0 w-100" placeholder="Password"
+                                style="background: transparent; box-shadow: none !important;" />
                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
                         </div>
 
-                        <!-- Tombol Login -->
-                        <div class="text-center">
-                            <button type="submit" class="py-3 w-100 rounded-3 fw-bold"
-                                style="background: #343434; color: white; border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                                {{ __('Log in') }}
-                            </button>
-                            <a href="{{ url("register?typeRegistration=$typeRegistration") }}">
+                        @guest
+                            <!-- Tombol Login -->
+                            <div class="text-center">
+                                <button type="submit" class="py-3 w-100 rounded-3 fw-bold"
+                                    style="background: #343434; color: white; border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                    {{ __('Log in') }}
+                                </button>
+                                <a href="{{ url("register?typeRegistration=$typeRegistration") }}">
+                                    <button type="button" class="py-3 mt-4 w-100 rounded-3 fw-bold"
+                                        style="background: gray; color: white; border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                        {{ __('Register') }}
+                                    </button>
+                                </a>
+                            </div>
+
+                            <a href="{{ route('welcome') }}">
                                 <button type="button" class="py-3 mt-4 w-100 rounded-3 fw-bold"
-                                style="background: gray; color: white; border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                                {{ __('Register') }}
+                                    style="background: gray; color: white; border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                    {{ __('Back to welcome') }}
                                 </button>
                             </a>
-                        </div>
+                        @endguest
 
-                        <a href="{{ route('welcome') }}">
+                        @auth
+                        <a href="{{ route('home') }}">
                             <button type="button" class="py-3 mt-4 w-100 rounded-3 fw-bold"
                                 style="background: gray; color: white; border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                                {{ __('Back to welcome') }}
+                                {{ __('Back to home') }}
                             </button>
                         </a>
+                        @endauth
                     </form>
                 </div>
             </div>
@@ -125,5 +140,3 @@
 
     </div>
 </x-app-layout>
-
-

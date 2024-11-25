@@ -233,8 +233,7 @@
 
 {{-- =================[Register Driver]================= --}}
 <x-app-layout>
-    <div class="container-fluid"
-        style="background-color: #343434; min-height: 100vh; position: relative;">
+    <div class="container-fluid" style="background-color: #343434; min-height: 100vh; position: relative;">
 
         <!-- Segitiga Putih di Kanan Bawah -->
         <div
@@ -365,8 +364,8 @@
                                     <h3 class="">Do you have a vehicle?</h3>
                                     <div class="gap-3 mt-2 d-flex align-items-center">
                                         <div>
-                                            <input type="radio" name="have_vehicle" id="vehicle_yes"
-                                                value="1" @if (old('have_vehicle') == '1') checked @endif
+                                            <input type="radio" name="have_vehicle" id="vehicle_yes" value="1"
+                                                @if (old('have_vehicle') == '1') checked @endif
                                                 class="form-check-input" />
                                             <label for="vehicle_yes" class="">Yes, I have a private
                                                 vehicle</label>
@@ -387,7 +386,7 @@
                         </div>
 
                         <!-- Jika Ya -->
-                        <div class="vehicle-info {{ old('have_vehicle') == false ? 'd-none' : ''}}">
+                        <div class="vehicle-info {{ old('have_vehicle') == false ? 'd-none' : '' }}">
                             <div class="mt-0 row g-4">
                                 <!-- No Plat -->
                                 <div class="col-md-6">
@@ -397,7 +396,7 @@
                                         <i class="ti ti-barcode me-3" style="font-size: 24px;"></i>
                                         <input type="text" id="number_plate" name="number_plate"
                                             placeholder="Nomor Plat" class="bg-transparent border-0 form-control"
-                                            value="{{ old('number_plate') ?? ""}}" />
+                                            value="{{ old('number_plate') ?? '' }}" />
                                     </div>
                                     @error('number_plate')
                                         <div class="invalid-feedback d-block">{{ $message }}</div>
@@ -441,26 +440,37 @@
                         </div>
                         @endif
                         <!-- Submit -->
-                        <div class="mt-4 text-center col-md-12">
-                            <button type="submit" class="py-3 w-100 rounded-3 fw-bold"
-                                style="background: #343434; color: white; border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                                Register
-                            </button>
+                        @guest
+                            <div class="mt-4 text-center col-md-12">
+                                <button type="submit" class="py-3 w-100 rounded-3 fw-bold"
+                                    style="background: #343434; color: white; border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                    Register
+                                </button>
 
-                            <a href="{{ url("login?typeRegistration=$typeRegistration") }}">
+                                <a href="{{ url("login?typeRegistration=$typeRegistration") }}">
+                                    <button type="button" class="py-3 mt-4 w-100 rounded-3 fw-bold"
+                                        style="background: gray; color: white; border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                        {{ __('Login') }}
+                                    </button>
+                                </a>
+                            </div>
+
+                            <a href="{{ route('welcome') }}">
                                 <button type="button" class="py-3 mt-4 w-100 rounded-3 fw-bold"
                                     style="background: gray; color: white; border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                                    {{ __('Login') }}
+                                    {{ __('Back to welcome') }}
                                 </button>
                             </a>
-                        </div>
+                        @endguest
 
-                        <a href="{{ route('welcome') }}">
+                        @auth
+                        <a href="{{ route('home') }}">
                             <button type="button" class="py-3 mt-4 w-100 rounded-3 fw-bold"
                                 style="background: gray; color: white; border: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                                {{ __('Back to welcome') }}
+                                {{ __('Back to home') }}
                             </button>
                         </a>
+                        @endauth
                     </form>
                 </div>
             </div>

@@ -98,7 +98,7 @@
                     dan driver.
                 </p>
                 <button class="bg-[#343434] text-white px-6 py-2 mt-4 rounded-lg hover:bg-opacity-80">
-                    <a href="getstarterd.html" class="text-white">Get Started</a>
+                    <a href="{{ route("welcome") }}" class="text-white">Get Started</a>
                 </button>
 
             </div>

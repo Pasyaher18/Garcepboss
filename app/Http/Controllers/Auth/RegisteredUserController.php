@@ -106,9 +106,8 @@ class RegisteredUserController extends Controller
             Auth::login($user);
 
             // Redirect ke dashboard
-            return redirect(route('dashboard'))->with('success', 'Registration successful!');
+            return redirect(route('home'))->with('success', 'Registration successful!');
         } catch (Exception $e) {
-            dd($e);
             // Rollback transaksi jika terjadi error
             DB::rollBack();
 
