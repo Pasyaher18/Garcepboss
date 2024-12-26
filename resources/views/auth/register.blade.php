@@ -249,8 +249,8 @@
             z-index: 0;">
 
             <!-- Konten Utama -->
-            <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-                <div class="w-100" style="max-width: 800px;">
+            <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;overflow-y: scroll;">
+                <div class="w-100" style="max-width: 800px; height: 100vh;overflow-y: scroll;padding-top:3%">
 
                     <!-- Judul -->
                     <h1 class="mb-3 text-center fw-bold" style="font-family: 'Inter', sans-serif; font-size: 60px;">
