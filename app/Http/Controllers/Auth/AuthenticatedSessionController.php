@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
     public function create(Request $request)
     {
         $typeRegistration = $request->typeRegistration;
-        if(!in_array($typeRegistration, ['user', 'driver'])) return redirect()->back();
+        if (!in_array($typeRegistration, ['user', 'driver'])) return redirect()->back();
         return view('auth.login', compact('typeRegistration'));
     }
 
@@ -30,7 +30,13 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route("home");
+        $user = auth()->user();
+
+        if ($user->hasRole('driver')) {
+            return redirect()->route('driver-home')->with('success', 'Login successful!');;
+        }
+
+        return redirect()->route('home')->with('success', 'Login successful!');
     }
 
     /**

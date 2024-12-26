@@ -14,15 +14,6 @@
                             <p class="mb-5" style="color: white;">
                                 Please fill out the required fields to register as a driver.
                             </p>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-
-                                <x-responsive-nav-link :href="route('logout')"
-                                        onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
-                                    {{ __('Log Out') }}
-                                </x-responsive-nav-link>
-                            </form>
                         </div>
 
                         <!-- Boxes Section -->
@@ -149,10 +140,27 @@
 
                 <!-- Right Side -->
                 <div class="gap-4 col-md-6 d-flex flex-column align-items-start">
+                    <!-- Maps Dummy & Logout -->
                     <div>
-                        <h1 class="mb-3 text-left fw-bold" style="font-family: 'Inter', sans-serif; font-size: 25px; font-style: italic;">
-                            Maps
-                        </h1>
+                        <div class="d-flex justify-content-between align-items-center" style="width: 120%;">
+                            <!-- Title (Maps) -->
+                            <h1 class="mb-3 fw-bold" style="font-family: 'Inter', sans-serif; font-size: 25px; font-style: italic;">
+                                Maps
+                            </h1>
+
+                            <!-- Logout Button -->
+                            <form method="POST" action="{{ route('logout') }}" class="mb-3 ms-3">
+                                @csrf
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                        style="background-color: #A8A3A3; border: none; border-radius: 50%;
+                                            width: 50px; height: 50px; display: flex;
+                                            justify-content: center; align-items: center;
+                                            padding: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                                    <i class="ti ti-logout fs-3" style="color: #272727;"></i>
+                                </button>
+                            </form>
+                        </div>
+
                         <div class="d-flex flex-column align-items-center justify-content-start rounded-5" style="background: #ffffff; width: 120%; padding: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
                             <div class="overflow-hidden rounded-5" style="width: 100%; aspect-ratio: 4/2;">
                                 <img src="{{ asset('icon/maps.png') }}" alt="Kurir Photo" style="width: 100%; height: 100%; object-fit: cover;">
@@ -160,8 +168,7 @@
                         </div>
                     </div>
 
-                    {{-- Yang di Comment ini buat user --}}
-                    {{-- <div style="width: 100%">
+                    <div style="width: 80%">
                         <!-- Title -->
                         <h1 class="mb-3 text-left fw-bold"
                             style="font-family: 'Inter', sans-serif; font-size: 25px; font-style: italic;">
@@ -174,81 +181,11 @@
                             <div class="overflow-hidden d-flex align-items-center justify-content-center rounded-5"
                                 style="width: 100%; aspect-ratio: 6/2; background:">
                                 <p class="m-0 text-center" style="color: #3c3c3c;; font-size: 20px; font-weight: bold;">
-                                    View Reminders
+                                    No Reminders
                                 </p>
                             </div>
                         </div>
-                    </div> --}}
-
-                    {{-- Yang ini buat driver --}}
-                    <div style="width: 100%;">
-                        <!-- Title -->
-                        <h1 class="mb-3 text-left fw-bold"
-                            style="font-family: 'Inter', sans-serif; font-size: 25px; font-style: italic;">
-                            Reminder
-                        </h1>
-
-                        <!-- Reminder Card -->
-                        <div class="rounded-5" style="background: #272727; width: 70%; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 15px;">
-                            <!-- List Pesanan -->
-                            <div class="gap-3 d-flex flex-column rounded-4" style="max-height: 200px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #3c3c3c #272727;">
-
-                                <!-- Pesanan 1 -->
-                                <div class="p-3 d-flex justify-content-between align-items-center rounded-4"
-                                    style="background: #3c3c3c;">
-                                    <div>
-                                        <p class="m-0" style="color: white; font-size: 16px; font-weight: bold;">John Doe</p>
-                                        <p class="m-0" style="color: #c2c2c2; font-size: 14px;"> <i class="ti ti-map-pin">&nbsp;</i>123 Street, City Center</p>
-                                    </div>
-                                    <button class="btn btn-sm btn-primary"
-                                        style="background: #272727; border: none; font-size: 14px;">
-                                        Take Order
-                                    </button>
-                                </div>
-
-                                <!-- Pesanan 1 -->
-                                <div class="p-3 d-flex justify-content-between align-items-center rounded-4"
-                                    style="background: #3c3c3c;">
-                                    <div>
-                                        <p class="m-0" style="color: white; font-size: 16px; font-weight: bold;">John Doe</p>
-                                        <p class="m-0" style="color: #c2c2c2; font-size: 14px;"> <i class="ti ti-map-pin">&nbsp;</i>123 Street, City Center</p>
-                                    </div>
-                                    <button class="btn btn-sm btn-primary"
-                                        style="background: #272727; border: none; font-size: 14px;">
-                                        Take Order
-                                    </button>
-                                </div>
-
-                                <!-- Pesanan 1 -->
-                                <div class="p-3 d-flex justify-content-between align-items-center rounded-4"
-                                    style="background: #3c3c3c;">
-                                    <div>
-                                        <p class="m-0" style="color: white; font-size: 16px; font-weight: bold;">John Doe</p>
-                                        <p class="m-0" style="color: #c2c2c2; font-size: 14px;"> <i class="ti ti-map-pin">&nbsp;</i>123 Street, City Center</p>
-                                    </div>
-                                    <button class="btn btn-sm btn-primary"
-                                        style="background: #272727; border: none; font-size: 14px;">
-                                        Take Order
-                                    </button>
-                                </div>
-
-                                <!-- Pesanan 1 -->
-                                <div class="p-3 d-flex justify-content-between align-items-center rounded-4"
-                                    style="background: #3c3c3c;">
-                                    <div>
-                                        <p class="m-0" style="color: white; font-size: 16px; font-weight: bold;">John Doe</p>
-                                        <p class="m-0" style="color: #c2c2c2; font-size: 14px;"> <i class="ti ti-map-pin">&nbsp;</i>123 Street, City Center</p>
-                                    </div>
-                                    <button class="btn btn-sm btn-primary"
-                                        style="background: #272727; border: none; font-size: 14px;">
-                                        Take Order
-                                    </button>
-                                </div>
-
-                            </div>
-                        </div>
                     </div>
-
 
                 </div>
 

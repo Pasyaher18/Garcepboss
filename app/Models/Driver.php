@@ -11,4 +11,14 @@ class Driver extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function driver()
+    {
+        return $this->belongsTo(Driver::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

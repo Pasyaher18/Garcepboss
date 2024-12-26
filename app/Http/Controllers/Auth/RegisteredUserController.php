@@ -41,6 +41,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255', 'unique:' . User::class],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', Rules\Password::defaults()],
+            'avatar' => ['required', 'image', 'max:2048'],
             'typeRegistration' => ['required', 'in:driver,user'], // Validasi tipe registrasi
             'birth_date' => ['required_if:typeRegistration,driver', 'date'],
             'driver_license' => ['required_if:typeRegistration,driver', 'image', 'max:2048'],
@@ -58,6 +59,7 @@ class RegisteredUserController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'avatar' => $request->file('avatar')->store('avatar', 'public')
             ]);
 
             // Tentukan role berdasarkan typeRegistration
@@ -104,6 +106,10 @@ class RegisteredUserController extends Controller
             // Event dan login
             event(new Registered($user));
             Auth::login($user);
+
+            if ($role == "driver") {
+                return redirect(route('driver-home'))->with('success', 'Registration successful!');
+            }
 
             // Redirect ke dashboard
             return redirect(route('home'))->with('success', 'Registration successful!');

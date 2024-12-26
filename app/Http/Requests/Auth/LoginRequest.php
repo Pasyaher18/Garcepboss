@@ -54,6 +54,7 @@ class LoginRequest extends FormRequest
         if (!Auth::attempt($credentials, $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
+            session()->flash('error', "Login faield pls check make sure credential is valid");
             throw ValidationException::withMessages([
                 'username_or_email' => trans('auth.failed'),
             ]);

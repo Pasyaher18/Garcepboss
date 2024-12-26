@@ -254,7 +254,7 @@
 
                     <!-- Judul -->
                     <h1 class="mb-3 text-center fw-bold" style="font-family: 'Inter', sans-serif; font-size: 60px;">
-                        Driver Registration
+                        {{ $typeRegistration == 'driver' ? "Driver" : "User" }} Registration
                     </h1>
                     <p class="mb-5 text-center" style="color: #343434;">
                         Please fill out the required fields to register as a driver.
@@ -307,6 +307,20 @@
                                         required />
                                 </div>
                                 @error('name')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="avatar">Avatar profile (IMG)</label>
+                                <div class="d-flex align-items-center rounded-3"
+                                    style="background: #c2c2c2; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 10px;">
+                                    <i class="ti ti-id me-3" style="font-size: 24px;"></i>
+                                    <input type="file" id="avatar" name="avatar" accept="image/*"
+                                        class="bg-transparent border-0 form-control" required
+                                        value="{{ old('avatar') }}" />
+                                </div>
+                                @error('avatar')
                                     <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>

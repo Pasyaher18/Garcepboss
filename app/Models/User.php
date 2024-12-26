@@ -46,4 +46,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function orders()
+    {
+        return $this->hasManyThrough(Order::class, Driver::class, 'user_id', 'driver_id', 'id', 'id');
+    }
 }

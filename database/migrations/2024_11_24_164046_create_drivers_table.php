@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('number_plate')->nullable(); // Nomor plat kendaraan (opsional)
             $table->string('vehicle_registration')->nullable(); // Lokasi file STNK (opsional)
             $table->string('vehicle_photo')->nullable(); // Lokasi file foto kendaraan (opsional)
+            $table->decimal('rating', 3, 1)->nullable()->default(0.0); // Rating (1.0 - 5.0), nullable
             $table->timestamps(); // Kolom created_at dan updated_at
         });
     }
